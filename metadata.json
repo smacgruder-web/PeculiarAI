@@ -1,0 +1,6 @@
+{
+  "name": "Peculiar AI",
+  "description": "Modern AI consulting and automation firm helping businesses modernize operations and unlock growth through practical artificial intelligence solutions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

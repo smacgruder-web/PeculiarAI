@@ -1,0 +1,96 @@
+@import "tailwindcss";
+
+@theme {
+  --font-inter: var(--font-inter);
+  --font-space: var(--font-space-grotesk);
+  --font-mono: var(--font-mono);
+
+  --color-primary: #2DD4BF;
+  --color-accent: #FF7A5C;
+  --color-surface: #0a0b0e;
+  --color-border: #1e293b;
+  --color-dark: #0f172a;
+  --color-teal: #2DD4BF;
+  --color-coral: #FF7A5C;
+  --color-gray: #A1A1AA;
+}
+
+@layer base {
+  html {
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    @apply bg-surface text-slate-300 selection:bg-primary selection:text-white font-inter overflow-x-hidden min-h-screen;
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-space font-bold tracking-tight text-white;
+  }
+
+  section[id] {
+    scroll-margin-top: 5rem;
+  }
+
+  input, select, textarea, button {
+    font-size: 16px;
+  }
+
+  @media (min-width: 768px) {
+    input, select, textarea {
+      font-size: inherit;
+    }
+  }
+}
+
+@layer utilities {
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 shadow-xl;
+  }
+
+  .glow-teal {
+    box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
+  }
+
+  .glow-coral {
+    box-shadow: 0 0 20px rgba(255, 122, 92, 0.4);
+  }
+
+  .kinetic-card {
+    @apply bg-[#15181E] border-t-4 border-[#2dd4bf] transition-all hover:-translate-y-1;
+  }
+
+  .noise-overlay {
+    background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+    opacity: 0.05;
+    pointer-events: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

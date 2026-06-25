@@ -1,0 +1,72 @@
+Peculiar AI Labs — cPanel Node.js Deployment
+============================================
+
+This package runs the FULL Next.js app with:
+- Live AI (chatbot, readiness tool, demo console)
+- Server-side forms with rate limiting + honeypot
+- Security headers (CSP, X-Frame-Options, etc.)
+
+STEP 1 — Upload (pick one method)
+---------------------------------
+
+METHOD A — FTP (BEST if File Manager gives upload errors)
+  File: cpanel-node-deploy.zip
+  1. cPanel → FTP Accounts → note Host, Username, Password
+  2. Download FileZilla (free): https://filezilla-project.org
+  3. Connect → upload zip to /home/YOURUSER/peculiar-ai/
+  4. File Manager → Extract → confirm server.js exists
+
+METHOD B — Split parts (File Manager, no FTP)
+  Folder: cpanel-node-parts/
+  Upload ALL peculiar-part.zip + peculiar-part.z01 + .z02 ...
+  Then cPanel → Terminal → follow REASSEMBLE.txt
+
+METHOD C — Static site only (~8 MB, always uploads)
+  File: cpanel-deploy.zip
+  Works in File Manager. No Node.js. AI/forms use demo/fallback mode.
+  Upload to public_html, extract. Skip Steps 2-3 Node.js setup.
+
+STEP 2 — Environment variables
+------------------------------
+1. Copy .env.example → .env in the app root
+2. Fill in GEMINI_API_KEY and RESEND_API_KEY
+
+STEP 3 — Setup Node.js App
+--------------------------
+cPanel → Software → Setup Node.js App → Create Application
+
+  Node.js version: 18.x or 20.x
+  Application mode: Production
+  Application root: peculiar-ai  (path to extracted folder)
+  Application URL: peculiarailabs.com
+  Application startup file: server.js
+
+Add environment variables from your .env file in the Node.js App UI.
+
+The deploy zip already includes node_modules. Do NOT run NPM Install.
+Click Start / Restart after setting environment variables.
+
+STEP 4 — Point domain (already on cPanel)
+-----------------------------------------
+Keep DNS A record @ → your cPanel IP (66.29.153.159).
+Do NOT point to Vercel.
+
+The Node.js app proxy handles web traffic for peculiarailabs.com.
+
+STEP 5 — Verify
+---------------
+- https://peculiarailabs.com loads the site
+- Contact form submits (needs RESEND_API_KEY)
+- AI snapshot returns live or demo mode (needs GEMINI_API_KEY)
+- Security headers present (check browser devtools → Network)
+
+SECURITY CHECKLIST (included in this build)
+-------------------------------------------
+[x] CSP + Permissions-Policy via middleware
+[x] Rate limiting on all /api routes
+[x] Honeypot on forms
+[x] Input sanitization + body size limits
+[x] Prompt injection boundaries on AI routes
+[x] AI output filtering
+[x] Generic API error messages (no stack leaks)
+[x] Privacy notices on forms

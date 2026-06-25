@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peculiar AI — Local Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600&amp;family=Inter:wght@400;500&amp;display=swap');
+    
+    :root {
+      --teal: #2DD4BF;
+      --coral: #FF7A5C;
+    }
+
+    body {
+      font-family: 'Inter', system_ui, sans-serif;
+    }
+    
+    .font-space {
+      font-family: 'Space Grotesk', system_ui, sans-serif;
+      font-feature-settings: "ss02";
+    }
+
+    .hero-bg {
+      background-image: url('./public/10_youtube-banner_2560x1440.png');
+      background-size: cover;
+      background-position: center;
+      filter: contrast(1.08) saturate(0.95) brightness(0.96);
+    }
+
+    .glow-teal {
+      box-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
+    }
+
+    .section-dark {
+      background-color: #0a0b0e;
+    }
+
+    .kinetic-text {
+      font-feature-settings: "ss01", "ss02";
+    }
+
+    #particles-canvas {
+      mix-blend-mode: screen;
+    }
+  </style>
+</head>
+<body class="bg-[#0a0b0e] text-white overflow-x-hidden">
+  <!-- Simple Nav -->
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-[#0a0b0e]/95 backdrop-blur-md border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="flex items-center justify-between h-20">
+        <!-- Logo -->
+        <a href="#hero" class="flex items-center">
+          <img 
+            src="./public/logo-text.png" 
+            alt="Peculiar AI" 
+            class="h-10 w-auto"
+          />
+        </a>
+
+        <div class="hidden md:flex items-center gap-8 text-sm">
+          <a href="#solutions" class="text-white/60 hover:text-white transition-colors">Solutions</a>
+          <a href="#process" class="text-white/60 hover:text-white transition-colors">Process</a>
+          <a href="#estimator" class="text-white/60 hover:text-white transition-colors">Estimator</a>
+          <a href="#demo" class="text-white/60 hover:text-white transition-colors">Demo</a>
+        </div>
+
+        <a href="https://calendly.com/peculiarai" 
+           target="_blank"
+           class="hidden sm:block bg-[#2DD4BF] hover:bg-[#57f1db] transition-all text-[#003731] px-5 py-2.5 rounded-full text-sm font-bold tracking-tight">
+          Book Strategy Session
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" class="relative min-h-screen pt-20 lg:pt-24 pb-20 overflow-hidden bg-[#0a0b0e] text-white">
+    
+    <!-- Background Image -->
+    <div class="absolute inset-0 z-0 opacity-[0.78] bg-cover bg-center hero-bg"
+         style="background-image: url('./public/10_youtube-banner_2560x1440.png'); filter: contrast(1.08) saturate(0.95) brightness(0.96);">
+    </div>
+
+    <!-- Gradient Overlay (light on left so logo in image stays bright) -->
+    <div class="absolute inset-0 z-[1] bg-gradient-to-l from-[#0a0b0e]/55 via-transparent to-transparent"></div>
+
+    <!-- Particles Canvas -->
+    <canvas id="particles-canvas" class="absolute inset-0 z-[2] pointer-events-none"></canvas>
+
+    <!-- Left Hover Zone (for the dim/bright interaction) -->
+    <div id="left-hover-zone" 
+         class="absolute left-0 top-0 w-[45%] h-full z-[3] pointer-events-auto cursor-default">
+    </div>
+
+    <!-- Subtle glows -->
+    <div class="absolute top-0 right-0 -z-10 w-[520px] h-[520px] bg-[#2dd4bf]/6 blur-[160px] rounded-full translate-x-1/4 -translate-y-1/4"></div>
+    <div class="absolute bottom-8 right-12 -z-10 w-[380px] h-[380px] bg-[#ff7a5c]/5 blur-[120px] rounded-full"></div>
+
+    <!-- Content -->
+    <div class="max-w-7xl mx-auto px-6 relative z-10 pt-16 lg:pt-20 pb-16">
+      <div class="max-w-xl lg:ml-auto lg:mr-2 text-right">
+
+        <!-- Badge + Headline + Sub (these get the hover dim effect) -->
+        <div id="hero-text" class="transition-all duration-300 opacity-65">
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/10 rounded-full text-[#2dd4bf] text-xs font-bold uppercase tracking-widest mb-5">
+            <span class="flex h-2 w-2 rounded-full bg-[#2dd4bf]"></span>
+            Practical AI for Real Operations
+          </div>
+
+          <!-- Headline -->
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-space font-extrabold leading-[1.05] tracking-tighter mb-5 text-white">
+            AI that works where<br>others can't.
+          </h1>
+
+          <!-- Subheadline -->
+          <p class="text-base md:text-lg text-slate-300 max-w-[38ch] ml-auto mb-8 leading-snug">
+            Built for constrained environments, low bandwidth, and places the cloud doesn't reach.
+          </p>
+        </div>
+
+        <!-- CTAs (always strong) -->
+        <div class="flex flex-col sm:flex-row gap-3 mb-4 justify-end">
+          <a href="#contact" 
+             class="group inline-flex items-center justify-center gap-2 bg-[#2dd4bf] text-[#003731] px-7 py-3.5 rounded-full font-bold uppercase tracking-tight text-sm hover:bg-[#57f1db] transition-all hover:scale-[1.02]">
+            Get Started
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a href="#demo" 
+             class="group inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-full border border-white/15 font-bold uppercase tracking-tight text-sm hover:bg-white/5 transition-all hover:border-[#2dd4bf]/60">
+            Try the Console
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 text-[#2dd4bf] group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- Trust line -->
+        <div class="text-[10px] text-slate-400/70 tracking-[1.5px] mb-8 text-right">
+          Caribbean-first • Offline-capable • Deployed in real operations
+        </div>
+
+        <!-- Metrics -->
+        <div class="flex items-center justify-end gap-3">
+          <div class="px-4 py-2 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-3 text-sm">
+            <div class="font-mono text-xl font-semibold text-white tabular-nums">40%</div>
+            <div class="text-[10px] font-medium text-slate-400 leading-none uppercase tracking-widest">
+              Efficiency<br>Gain
+            </div>
+          </div>
+          <div class="px-4 py-2 bg-white/5 border border-white/10 rounded-2xl flex items-center gap-3 text-sm">
+            <div class="font-mono text-xl font-semibold text-white tabular-nums underline decoration-[#2dd4bf]/60">2.5k+</div>
+            <div class="text-[10px] font-medium text-slate-400 leading-none uppercase tracking-widest">
+              Workflows<br>Automated
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Quick note for the user -->
+  <div class="max-w-7xl mx-auto px-6 pb-12 text-center">
+    <p class="text-xs text-slate-500">
+      Static local preview of the current Hero • Hover the left side (logo area) to brighten the right text<br>
+      Full interactive site still runs via <span class="font-mono">npm run dev</span>
+    </p>
+  </div>
+
+  <script>
+    // Tailwind script (already loaded via CDN)
+    function initTailwind() {
+      // Optional: extend if needed
+    }
+
+    // === PARTICLES (simplified vanilla version of the project's Particles) ===
+    function initParticles() {
+      const canvas = document.getElementById('particles-canvas');
+      const ctx = canvas.getContext('2d', { alpha: true });
+      
+      let w = 0, h = 0;
+      let particles = [];
+      let animationFrame;
+
+      const colors = ['#2DD4BF', '#FF7A5C'];
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+
+      function createParticles(count = 70) {
+        particles = [];
+        for (let i = 0; i < count; i++) {
+          particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.6,
+            vy: (Math.random() - 0.5) * 0.6,
+            r: Math.random() * 2.2 + 0.8
+          });
+        }
+      }
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+
+          // Bounce
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+
+          // Draw particle
+          ctx.fillStyle = colors[i % 2];
+          ctx.globalAlpha = 0.75;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+
+          // Connect nearby particles
+          for (let j = i + 1; j < particles.length; j++) {
+            const q = particles[j];
+            const dx = p.x - q.x;
+            const dy = p.y - q.y;
+            const dist = Math.hypot(dx, dy);
+
+            if (dist < 135) {
+              ctx.strokeStyle = (i % 2 === 0) ? '#2DD4BF' : '#FF7A5C';
+              ctx.globalAlpha = 0.12 * (1 - dist / 135);
+              ctx.lineWidth = 1;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(q.x, q.y);
+              ctx.stroke();
+            }
+          }
+        }
+
+        ctx.globalAlpha = 1;
+        ctx.lineWidth = 1;
+
+        animationFrame = requestAnimationFrame(draw);
+      }
+
+      function init() {
+        resize();
+        createParticles(65);
+        draw();
+
+        window.addEventListener('resize', () => {
+          resize();
+          createParticles(65);
+        });
+      }
+
+      init();
+      return () => cancelAnimationFrame(animationFrame);
+    }
+
+    // === LEFT HOVER BRIGHTEN EFFECT (matches current Hero logic) ===
+    function initLeftHoverEffect() {
+      const zone = document.getElementById('left-hover-zone');
+      const textContainer = document.getElementById('hero-text');
+
+      if (!zone || !textContainer) return;
+
+      zone.addEventListener('mouseenter', () => {
+        textContainer.style.opacity = '1';
+      });
+
+      zone.addEventListener('mouseleave', () => {
+        textContainer.style.opacity = '0.65';
+      });
+
+      // Start at the dim state (matches the latest design)
+      textContainer.style.transition = 'opacity 300ms ease';
+      textContainer.style.opacity = '0.65';
+    }
+
+    // Boot everything
+    function init() {
+      initTailwind();
+      initParticles();
+      initLeftHoverEffect();
+
+      // Optional: subtle console note
+      console.log('%c[Peculiar AI] Static local hero preview loaded. Hover left side of hero for the interaction.', 'color:#666');
+    }
+
+    window.onload = init;
+  </script>
+</body>
+</html>
