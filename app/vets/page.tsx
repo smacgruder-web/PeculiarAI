@@ -16,10 +16,10 @@ export default function VetsLanding() {
           <a href="/" style={styles.brand} aria-label="Peculiar AI Labs home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo-final.png"
+              src="/logo-wordmark.png"
               alt="Peculiar AI Labs"
               width={200}
-              height={133}
+              height={129}
               style={styles.brandLogo}
             />
             <span style={styles.brandDivider} aria-hidden />

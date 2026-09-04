@@ -4,9 +4,9 @@ import Image from 'next/image';
 
 const LOGO = {
   // Brand kit: PECULIAR + hexagonal AI mark + LABS — not “PECULIAR AI LABS” letters
-  src: '/logo-final.png',
-  width: 1536,
-  height: 1024,
+  src: '/logo-wordmark.png',
+  width: 1476,
+  height: 953,
 } as const;
 
 interface LogoProps {
