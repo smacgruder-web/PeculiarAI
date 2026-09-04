@@ -9,6 +9,20 @@ export const metadata: Metadata = {
 export default function VetsLanding() {
   return (
     <main style={styles.body}>
+      <style>{`
+        @media (max-width: 720px) {
+          .vets-insignia-row {
+            grid-template-columns: 1fr 1fr !important;
+            grid-template-areas:
+              "crest insignia"
+              "copy copy" !important;
+            gap: 16px !important;
+          }
+          .vets-insignia-row .vets-crest { grid-area: crest; justify-self: center !important; max-width: 110px !important; }
+          .vets-insignia-row .vets-insignia { grid-area: insignia; justify-self: center !important; max-width: 110px !important; }
+          .vets-insignia-row .vets-hero-copy { grid-area: copy; }
+        }
+      `}</style>
       {/* HERO */}
       <header style={styles.hero}>
         <div style={styles.heroWash} aria-hidden />
@@ -37,22 +51,40 @@ export default function VetsLanding() {
           </nav>
         </div>
         <div style={styles.heroCenter}>
-          <p style={styles.heroEyebrow}>Veteran-owned · Mission-ready</p>
-          <h1 style={styles.heroH1}>
-            Built by <span style={styles.gold}>Veterans.</span>
-            <br />
-            Powered by AI.
-          </h1>
-          <p style={styles.heroSub}>
-            Mission-focused AI solutions from those who served.
-          </p>
-          <div style={styles.heroCtas}>
-            <a href="#who" style={styles.btn}>
-              Learn More
-            </a>
-            <a href="#blog" style={{ ...styles.btn, ...styles.btnGhost }}>
-              Read Day 6
-            </a>
+          <div className="vets-insignia-row" style={styles.heroInsigniaRow}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="vets-crest"
+              src="/vets/patch1.png"
+              alt="U.S. Army Transportation Corps crest"
+              style={styles.crestImg}
+            />
+            <div className="vets-hero-copy" style={styles.heroCopy}>
+              <p style={styles.heroEyebrow}>Veteran-owned · Mission-ready</p>
+              <h1 style={styles.heroH1}>
+                Built by <span style={styles.gold}>Veterans.</span>
+                <br />
+                Powered by AI.
+              </h1>
+              <p style={styles.heroSub}>
+                Mission-focused AI solutions from those who served.
+              </p>
+              <div style={styles.heroCtas}>
+                <a href="#who" style={styles.btn}>
+                  Learn More
+                </a>
+                <a href="#blog" style={{ ...styles.btn, ...styles.btnGhost }}>
+                  Read Day 6
+                </a>
+              </div>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="vets-insignia"
+              src="/vets/patch2.png"
+              alt="U.S. Army sustainment command insignia"
+              style={styles.insigniaImg}
+            />
           </div>
         </div>
       </header>
@@ -330,18 +362,28 @@ export default function VetsLanding() {
       </section>
 
       <footer style={styles.footer}>
-        <div style={styles.patches}>
+        <div style={styles.footerInsigniaRow}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/vets/patch1.png" alt="Army patch" style={styles.patchImg} />
+          <img
+            src="/vets/patch1.png"
+            alt="U.S. Army Transportation Corps crest"
+            style={styles.crestImgFooter}
+          />
+          <div style={styles.footerCopy}>
+            Peculiar AI Labs is a veteran-owned and led company. U.S. Army service
+            reflected by the Transportation Corps crest (left) and sustainment-command
+            insignia (right).
+            <br />
+            These pages share personal anecdotes, not medical advice. If you are in
+            crisis, call 988 (press 1).
+          </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/vets/patch2.png" alt="Army patch" style={styles.patchImg} />
+          <img
+            src="/vets/patch2.png"
+            alt="U.S. Army sustainment command insignia"
+            style={styles.insigniaImgFooter}
+          />
         </div>
-        Peculiar AI Labs is a veteran-owned and led company. U.S. Army service
-        reflected by the Transportation Corps and sustainment-command insignia
-        shown.
-        <br />
-        These pages share personal anecdotes, not medical advice. If you are in
-        crisis, call 988 (press 1).
       </footer>
     </main>
   );
@@ -460,8 +502,41 @@ const styles: Record<string, React.CSSProperties> = {
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
-    padding: "28px 20px 36px",
+    padding: "28px 16px 36px",
   },
+  heroInsigniaRow: {
+    width: "100%",
+    maxWidth: 980,
+    display: "grid",
+    gridTemplateColumns: "minmax(96px,140px) minmax(0,1fr) minmax(96px,140px)",
+    alignItems: "center",
+    gap: "clamp(12px, 3vw, 28px)",
+  } as React.CSSProperties,
+  heroCopy: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    textAlign: "center",
+    minWidth: 0,
+  } as React.CSSProperties,
+  crestImg: {
+    width: "100%",
+    maxWidth: 132,
+    height: "auto",
+    aspectRatio: "1",
+    objectFit: "contain",
+    justifySelf: "start",
+    filter: "drop-shadow(0 8px 20px rgba(0,0,0,.45))",
+  } as React.CSSProperties,
+  insigniaImg: {
+    width: "100%",
+    maxWidth: 132,
+    height: "auto",
+    aspectRatio: "1",
+    objectFit: "contain",
+    justifySelf: "end",
+    filter: "drop-shadow(0 8px 20px rgba(0,0,0,.45))",
+  } as React.CSSProperties,
   heroEyebrow: {
     margin: "0 0 10px",
     fontSize: 11,
@@ -471,7 +546,7 @@ const styles: Record<string, React.CSSProperties> = {
     fontWeight: 600,
   },
   heroH1: {
-    fontSize: "clamp(28px,5.2vw,48px)",
+    fontSize: "clamp(26px,4.8vw,46px)",
     margin: 0,
     fontWeight: 800,
     letterSpacing: "-0.02em",
@@ -484,7 +559,7 @@ const styles: Record<string, React.CSSProperties> = {
     color: "#e3c574",
     margin: "10px 0 20px",
     fontStyle: "italic",
-    maxWidth: 480,
+    maxWidth: 420,
     textShadow: "0 2px 12px rgba(0,0,0,.45)",
   },
   heroCtas: {
@@ -579,21 +654,41 @@ const styles: Record<string, React.CSSProperties> = {
     padding: 22,
     textAlign: "center",
   } as React.CSSProperties,
-  patches: { display: "flex", gap: 10, justifyContent: "center", margin: "14px 0" },
-  patchImg: {
-    width: 46,
-    height: 46,
+  footerInsigniaRow: {
+    width: "100%",
+    maxWidth: 920,
+    margin: "0 auto",
+    display: "grid",
+    gridTemplateColumns: "minmax(88px,120px) minmax(0,1fr) minmax(88px,120px)",
+    alignItems: "center",
+    gap: "clamp(12px, 3vw, 24px)",
+  } as React.CSSProperties,
+  crestImgFooter: {
+    width: "100%",
+    maxWidth: 112,
+    height: "auto",
+    aspectRatio: "1",
     objectFit: "contain",
-    border: "1px solid #555",
-    borderRadius: 6,
-    background: "#fff",
-    padding: 2,
-  },
-  footer: {
-    padding: "34px 24px",
+    justifySelf: "start",
+    filter: "drop-shadow(0 6px 14px rgba(0,0,0,.4))",
+  } as React.CSSProperties,
+  insigniaImgFooter: {
+    width: "100%",
+    maxWidth: 112,
+    height: "auto",
+    aspectRatio: "1",
+    objectFit: "contain",
+    justifySelf: "end",
+    filter: "drop-shadow(0 6px 14px rgba(0,0,0,.4))",
+  } as React.CSSProperties,
+  footerCopy: {
     textAlign: "center",
     fontSize: 12,
     color: "#9a967f",
+    lineHeight: 1.55,
+  } as React.CSSProperties,
+  footer: {
+    padding: "28px 20px 36px",
     borderTop: "1px solid rgba(201,164,76,.2)",
   },
 };
