@@ -1,0 +1,11 @@
+[
+  {
+    "day": 6,
+    "date": "2026-09-04",
+    "hook": "Local first, or it is theater.",
+    "blurb": "The tool that didn't make me feel weak.",
+    "format": "Video",
+    "url": "https://peculiar-ai.vercel.app/vets#blog",
+    "repo_note": "Live page: edit /Users/ll/PeculiarAI/app/vets/page.tsx then git push"
+  }
+]

@@ -13,7 +13,7 @@ export default function VetsLanding() {
       <header style={styles.hero}>
         <div style={styles.topbar}>
           <div style={styles.brand}>
-            <div style={styles.hex} />
+            <img src="/vets/camo-hex-logo.svg" alt="Peculiar AI Labs" width={46} height={46} style={{ display: "block" }} />
             <div>
               <div style={styles.nm}>
                 PECULIAR <b style={{ color: "var(--gold)" }}>AI LABS</b>
@@ -189,6 +189,17 @@ export default function VetsLanding() {
             plan, not a spiral.
           </p>
         </div>
+        <div style={styles.post} id="day-6">
+          <div style={styles.day}>DAY 6</div>
+          <h4 style={styles.postH}>The tool that didn&apos;t make me feel weak</h4>
+          <p style={styles.postP}>
+            I did not need a smarter lecture. I needed a place to talk that did
+            not put an audience on me. Local stand-down: I dump the loop, it
+            reflects it, then it walks me to one next action. No cloud. No
+            scoreboard. If the night is bigger than a tool, I call a person —
+            988, press 1.
+          </p>
+        </div>
         <a href="#contact" style={{ ...styles.btn, ...styles.btnGhost, marginTop: 14 }}>
           Read the series
         </a>
@@ -332,7 +343,7 @@ const styles: Record<string, React.CSSProperties> = {
   } as React.CSSProperties,
   hero: {
     position: "relative",
-    background: "url(/vets/banner.jpg) center/cover no-repeat",
+    background: "linear-gradient(160deg,#2d3a1f 0%,#1c1c1c 70%)",
     minHeight: "62vh",
     display: "flex",
     flexDirection: "column",

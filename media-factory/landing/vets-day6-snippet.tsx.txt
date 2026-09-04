@@ -1,0 +1,12 @@
+{/* Paste after DAY 5 in app/vets/page.tsx — already applied in /Users/ll/PeculiarAI */}
+<div style={styles.post} id="day-6">
+  <div style={styles.day}>DAY 6</div>
+  <h4 style={styles.postH}>The tool that didn&apos;t make me feel weak</h4>
+  <p style={styles.postP}>
+    I did not need a smarter lecture. I needed a place to talk that did
+    not put an audience on me. Local stand-down: I dump the loop, it
+    reflects it, then it walks me to one next action. No cloud. No
+    scoreboard. If the night is bigger than a tool, I call a person —
+    988, press 1.
+  </p>
+</div>
