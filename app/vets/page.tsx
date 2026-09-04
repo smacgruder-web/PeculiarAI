@@ -11,17 +11,21 @@ export default function VetsLanding() {
     <main style={styles.body}>
       {/* HERO */}
       <header style={styles.hero}>
+        <div style={styles.heroWash} aria-hidden />
         <div style={styles.topbar}>
-          <div style={styles.brand}>
-            <img src="/vets/camo-hex-logo.svg" alt="Peculiar AI Labs" width={46} height={46} style={{ display: "block" }} />
-            <div>
-              <div style={styles.nm}>
-                PECULIAR <b style={{ color: "var(--gold)" }}>AI LABS</b>
-              </div>
-              <div style={styles.vt}>VETERANS</div>
-            </div>
-          </div>
-          <nav style={styles.nav}>
+          <a href="/" style={styles.brand} aria-label="Peculiar AI Labs home">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/logo-clean.png"
+              alt="Peculiar AI Labs"
+              width={168}
+              height={112}
+              style={styles.brandLogo}
+            />
+            <span style={styles.brandDivider} aria-hidden />
+            <span style={styles.vt}>Veterans</span>
+          </a>
+          <nav style={styles.nav} aria-label="Veterans page">
             <a href="#who" style={styles.navLink}>Mission</a>
             <a href="#blog" style={styles.navLink}>Stories</a>
             <a href="#resources" style={styles.navLink}>Resources</a>
@@ -29,17 +33,23 @@ export default function VetsLanding() {
           </nav>
         </div>
         <div style={styles.heroCenter}>
+          <p style={styles.heroEyebrow}>Veteran-owned · Mission-ready</p>
           <h1 style={styles.heroH1}>
-            Built by <span style={{ color: "var(--gold)" }}>Veterans.</span>
+            Built by <span style={styles.gold}>Veterans.</span>
             <br />
             Powered by AI.
           </h1>
           <p style={styles.heroSub}>
             Mission-focused AI solutions from those who served.
           </p>
-          <a href="#who" style={styles.btn}>
-            Learn More
-          </a>
+          <div style={styles.heroCtas}>
+            <a href="#who" style={styles.btn}>
+              Learn More
+            </a>
+            <a href="#blog" style={{ ...styles.btn, ...styles.btnGhost }}>
+              Read Day 6
+            </a>
+          </div>
         </div>
       </header>
 
@@ -336,90 +346,178 @@ export default function VetsLanding() {
 const styles: Record<string, React.CSSProperties> = {
   body: {
     margin: 0,
-    fontFamily: '"Helvetica Neue", Arial, sans-serif',
+    fontFamily:
+      'ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
     color: "#f4f1e8",
-    background: "#2a2d20",
-    lineHeight: 1.6,
+    background: "#1a1c14",
+    lineHeight: 1.65,
+    // brand tokens (used via styles.gold; kept here for clarity)
+    ["--gold" as string]: "#d4b56a",
+    ["--gold-soft" as string]: "#e3c574",
+    ["--olive" as string]: "#2d3a1f",
   } as React.CSSProperties,
   hero: {
     position: "relative",
-    background: "linear-gradient(160deg,#2d3a1f 0%,#1c1c1c 70%)",
-    minHeight: "62vh",
+    overflow: "hidden",
+    background:
+      "radial-gradient(1200px 520px at 50% -10%, rgba(212,181,106,.16), transparent 55%), linear-gradient(165deg, #2f3c22 0%, #1a1c14 58%, #12130f 100%)",
+    minHeight: "72vh",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
   } as React.CSSProperties,
+  heroWash: {
+    position: "absolute",
+    inset: 0,
+    backgroundImage:
+      "linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px)",
+    backgroundSize: "48px 48px",
+    maskImage: "linear-gradient(180deg, rgba(0,0,0,.55), transparent 75%)",
+    pointerEvents: "none",
+  } as React.CSSProperties,
   topbar: {
+    position: "relative",
+    zIndex: 2,
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: "18px 28px",
+    gap: 16,
+    margin: "16px 18px 0",
+    padding: "12px 18px",
+    borderRadius: 16,
+    border: "1px solid rgba(212,181,106,.22)",
+    background: "rgba(12,13,10,.55)",
+    backdropFilter: "blur(14px)",
+    WebkitBackdropFilter: "blur(14px)",
+    boxShadow: "0 10px 40px rgba(0,0,0,.28)",
+  } as React.CSSProperties,
+  brand: {
+    display: "flex",
+    alignItems: "center",
+    gap: 12,
+    textDecoration: "none",
+    color: "inherit",
+    minWidth: 0,
+  } as React.CSSProperties,
+  brandLogo: {
+    display: "block",
+    height: 44,
+    width: "auto",
+    maxWidth: 168,
+    objectFit: "contain",
+    filter: "drop-shadow(0 2px 10px rgba(0,0,0,.35))",
+  } as React.CSSProperties,
+  brandDivider: {
+    width: 1,
+    height: 28,
+    background: "rgba(212,181,106,.35)",
+    flexShrink: 0,
+  } as React.CSSProperties,
+  vt: {
+    fontSize: 11,
+    letterSpacing: "0.28em",
+    textTransform: "uppercase",
+    color: "#e3c574",
+    fontWeight: 700,
   },
-  brand: { display: "flex", alignItems: "center", gap: 12 },
-  hex: {
-    width: 42,
-    height: 42,
-    border: "2px solid #c9a44c",
-    borderRadius: 8,
-    background:
-      "repeating-linear-gradient(45deg,#3b3f2f,#3b3f2f 6px,#2a2d20 6px,#2a2d20 12px)",
+  nav: {
+    display: "flex",
+    flexWrap: "wrap",
+    justifyContent: "flex-end",
+    gap: "4px 6px",
   },
-  nm: { fontWeight: 800, letterSpacing: 1, fontSize: 18 },
-  vt: { fontSize: 10, letterSpacing: 3, color: "#e3c574" },
-  nav: {},
-  navLink: { marginLeft: 18, fontSize: 13, color: "#f4f1e8", opacity: 0.85 },
+  navLink: {
+    marginLeft: 0,
+    padding: "8px 12px",
+    fontSize: 13,
+    color: "#f4f1e8",
+    opacity: 0.88,
+    textDecoration: "none",
+    borderRadius: 999,
+    letterSpacing: "0.02em",
+  } as React.CSSProperties,
   heroCenter: {
+    position: "relative",
+    zIndex: 1,
     flex: 1,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
-    padding: "0 20px",
+    padding: "48px 20px 56px",
+  },
+  heroEyebrow: {
+    margin: "0 0 14px",
+    fontSize: 12,
+    letterSpacing: "0.22em",
+    textTransform: "uppercase",
+    color: "rgba(227,197,116,.9)",
+    fontWeight: 600,
   },
   heroH1: {
-    fontSize: "clamp(30px,6vw,58px)",
+    fontSize: "clamp(32px,6.2vw,60px)",
     margin: 0,
     fontWeight: 800,
-    textShadow: "0 2px 12px rgba(0,0,0,.6)",
+    letterSpacing: "-0.02em",
+    lineHeight: 1.08,
+    textShadow: "0 2px 18px rgba(0,0,0,.45)",
   },
+  gold: { color: "#d4b56a" },
   heroSub: {
     fontSize: "clamp(15px,2.4vw,20px)",
     color: "#e3c574",
-    margin: "10px 0 22px",
+    margin: "14px 0 28px",
     fontStyle: "italic",
-    textShadow: "0 2px 12px rgba(0,0,0,.6)",
+    maxWidth: 520,
+    textShadow: "0 2px 12px rgba(0,0,0,.45)",
+  },
+  heroCtas: {
+    display: "flex",
+    flexWrap: "wrap",
+    gap: 12,
+    justifyContent: "center",
   },
   btn: {
     display: "inline-block",
-    background: "#c9a44c",
+    background: "linear-gradient(180deg,#e0c57a 0%,#c9a44c 100%)",
     color: "#1c1d16",
     fontWeight: 800,
     padding: "12px 26px",
-    borderRadius: 8,
-    fontSize: 15,
+    borderRadius: 999,
+    fontSize: 14,
+    letterSpacing: "0.04em",
     cursor: "pointer",
     border: "none",
     textDecoration: "none",
+    boxShadow: "0 8px 24px rgba(0,0,0,.28)",
   } as React.CSSProperties,
   btnGhost: {
     background: "transparent",
-    border: "2px solid #c9a44c",
+    border: "1px solid rgba(212,181,106,.55)",
     color: "#e3c574",
+    boxShadow: "none",
   } as React.CSSProperties,
-  section: { padding: "54px 24px", maxWidth: 980, margin: "0 auto" },
-  secTitle: { fontSize: 26, fontWeight: 800, color: "#c9a44c", margin: "0 0 6px" },
-  secSub: { color: "#cfcabb", margin: "0 0 22px", fontSize: 14 },
+  section: { padding: "64px 24px", maxWidth: 980, margin: "0 auto" },
+  secTitle: {
+    fontSize: 28,
+    fontWeight: 800,
+    color: "#d4b56a",
+    margin: "0 0 8px",
+    letterSpacing: "-0.01em",
+  },
+  secSub: { color: "#cfcabb", margin: "0 0 26px", fontSize: 15, maxWidth: 640 },
   cards: {
     display: "grid",
     gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))",
     gap: 18,
   },
   card: {
-    background: "rgba(255,255,255,.04)",
-    border: "1px solid rgba(201,164,76,.25)",
-    borderRadius: 12,
-    padding: 20,
+    background: "linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.025))",
+    border: "1px solid rgba(212,181,106,.22)",
+    borderRadius: 16,
+    padding: 22,
+    boxShadow: "0 12px 32px rgba(0,0,0,.18)",
   },
   cardH: { margin: "0 0 8px", color: "#e3c574", fontSize: 17 },
   cardP: { margin: 0, fontSize: 14, color: "#e7e3d6" },
