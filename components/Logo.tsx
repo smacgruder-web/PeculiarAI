@@ -2,11 +2,11 @@
 
 import Image from 'next/image';
 
-/** Your existing primary logo file — sizing only, no recreation */
 const LOGO = {
-  src: '/logo.png',
-  width: 1248,
-  height: 832,
+  // Brand kit: PECULIAR + hexagonal AI mark + LABS — not “PECULIAR AI LABS” letters
+  src: '/logo-final.png',
+  width: 1536,
+  height: 1024,
 } as const;
 
 interface LogoProps {

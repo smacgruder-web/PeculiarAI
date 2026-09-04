@@ -16,10 +16,10 @@ export default function VetsLanding() {
           <a href="/" style={styles.brand} aria-label="Peculiar AI Labs home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo-clean.png"
+              src="/logo-final.png"
               alt="Peculiar AI Labs"
-              width={168}
-              height={112}
+              width={200}
+              height={133}
               style={styles.brandLogo}
             />
             <span style={styles.brandDivider} aria-hidden />
@@ -401,10 +401,11 @@ const styles: Record<string, React.CSSProperties> = {
   } as React.CSSProperties,
   brandLogo: {
     display: "block",
-    height: 44,
+    height: 48,
     width: "auto",
-    maxWidth: 168,
+    maxWidth: 200,
     objectFit: "contain",
+    // Universal wordmark: PECULIAR + hex AI + LABS (never spell “AI” as letters)
     filter: "drop-shadow(0 2px 10px rgba(0,0,0,.35))",
   } as React.CSSProperties,
   brandDivider: {
