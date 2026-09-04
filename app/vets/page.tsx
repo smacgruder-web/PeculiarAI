@@ -16,14 +16,18 @@ export default function VetsLanding() {
           <a href="/" style={styles.brand} aria-label="Peculiar AI Labs home">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/logo-wordmark.png"
-              alt="Peculiar AI Labs"
-              width={200}
-              height={129}
-              style={styles.brandLogo}
+              src="/logo-hex.png"
+              alt=""
+              width={40}
+              height={40}
+              style={styles.brandHex}
             />
-            <span style={styles.brandDivider} aria-hidden />
-            <span style={styles.vt}>Veterans</span>
+            <span style={styles.brandText}>
+              <span style={styles.brandName}>
+                PECULIAR <span style={styles.brandLabs}>LABS</span>
+              </span>
+              <span style={styles.vt}>Veterans</span>
+            </span>
           </a>
           <nav style={styles.nav} aria-label="Veterans page">
             <a href="#who" style={styles.navLink}>Mission</a>
@@ -360,11 +364,11 @@ const styles: Record<string, React.CSSProperties> = {
     position: "relative",
     overflow: "hidden",
     background:
-      "radial-gradient(1200px 520px at 50% -10%, rgba(212,181,106,.16), transparent 55%), linear-gradient(165deg, #2f3c22 0%, #1a1c14 58%, #12130f 100%)",
-    minHeight: "72vh",
+      "radial-gradient(900px 380px at 50% -10%, rgba(212,181,106,.14), transparent 55%), linear-gradient(165deg, #2f3c22 0%, #1a1c14 58%, #12130f 100%)",
+    minHeight: "auto",
     display: "flex",
     flexDirection: "column",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
   } as React.CSSProperties,
   heroWash: {
     position: "absolute",
@@ -399,27 +403,38 @@ const styles: Record<string, React.CSSProperties> = {
     color: "inherit",
     minWidth: 0,
   } as React.CSSProperties,
-  brandLogo: {
+  brandHex: {
     display: "block",
-    height: 48,
-    width: "auto",
-    maxWidth: 200,
+    height: 40,
+    width: 40,
     objectFit: "contain",
-    // Universal wordmark: PECULIAR + hex AI + LABS (never spell “AI” as letters)
-    filter: "drop-shadow(0 2px 10px rgba(0,0,0,.35))",
-  } as React.CSSProperties,
-  brandDivider: {
-    width: 1,
-    height: 28,
-    background: "rgba(212,181,106,.35)",
     flexShrink: 0,
+    filter: "drop-shadow(0 2px 8px rgba(0,0,0,.35))",
+  } as React.CSSProperties,
+  brandText: {
+    display: "flex",
+    flexDirection: "column",
+    gap: 2,
+    minWidth: 0,
+  } as React.CSSProperties,
+  brandName: {
+    fontSize: 15,
+    fontWeight: 800,
+    letterSpacing: "0.08em",
+    color: "#2dd4bf",
+    lineHeight: 1.1,
+  } as React.CSSProperties,
+  brandLabs: {
+    color: "#5eead4",
+    fontWeight: 700,
   } as React.CSSProperties,
   vt: {
-    fontSize: 11,
+    fontSize: 10,
     letterSpacing: "0.28em",
     textTransform: "uppercase",
     color: "#e3c574",
     fontWeight: 700,
+    lineHeight: 1.2,
   },
   nav: {
     display: "flex",
@@ -440,37 +455,36 @@ const styles: Record<string, React.CSSProperties> = {
   heroCenter: {
     position: "relative",
     zIndex: 1,
-    flex: 1,
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
     textAlign: "center",
-    padding: "48px 20px 56px",
+    padding: "28px 20px 36px",
   },
   heroEyebrow: {
-    margin: "0 0 14px",
-    fontSize: 12,
+    margin: "0 0 10px",
+    fontSize: 11,
     letterSpacing: "0.22em",
     textTransform: "uppercase",
     color: "rgba(227,197,116,.9)",
     fontWeight: 600,
   },
   heroH1: {
-    fontSize: "clamp(32px,6.2vw,60px)",
+    fontSize: "clamp(28px,5.2vw,48px)",
     margin: 0,
     fontWeight: 800,
     letterSpacing: "-0.02em",
-    lineHeight: 1.08,
+    lineHeight: 1.1,
     textShadow: "0 2px 18px rgba(0,0,0,.45)",
   },
   gold: { color: "#d4b56a" },
   heroSub: {
-    fontSize: "clamp(15px,2.4vw,20px)",
+    fontSize: "clamp(14px,2.2vw,18px)",
     color: "#e3c574",
-    margin: "14px 0 28px",
+    margin: "10px 0 20px",
     fontStyle: "italic",
-    maxWidth: 520,
+    maxWidth: 480,
     textShadow: "0 2px 12px rgba(0,0,0,.45)",
   },
   heroCtas: {
@@ -499,7 +513,7 @@ const styles: Record<string, React.CSSProperties> = {
     color: "#e3c574",
     boxShadow: "none",
   } as React.CSSProperties,
-  section: { padding: "64px 24px", maxWidth: 980, margin: "0 auto" },
+  section: { padding: "44px 24px", maxWidth: 980, margin: "0 auto" },
   secTitle: {
     fontSize: 28,
     fontWeight: 800,
